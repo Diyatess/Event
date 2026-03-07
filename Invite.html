@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kavya & George Betrothal</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Cormorant+Garamond:wght@400;600&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <style>
+        :root { 
+            --primary-green: #4a6741; 
+            --soft-pink: #d4a3a3;
+            --glass: rgba(255, 255, 255, 0.4);
+        }
+
+        /* TRENDING: Animated Gradient Background */
+        body { 
+            margin: 0; 
+            font-family: 'Cormorant Garamond', serif; 
+            color: #333; 
+            overflow-x: hidden;
+            background: linear-gradient(-45deg, #fdfaf6, #f2f5f0, #fdf4f4, #fdfaf6);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            min-height: 100vh;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating Bokeh Particles */
+        .bokeh {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* NEW: Floating Petals Container */
+        #petals-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Glassmorphism Sections */
+        .section { 
+            padding: 30px 20px; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            position: relative;
+            z-index: 1;
+        }
+
+        /* NEW: Corner Floral Accents */
+        .corner-floral {
+            position: absolute;
+            width: 150px;
+            opacity: 0.6;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .monogram-svg {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 5px;
+            stroke: var(--primary-green);
+            opacity: 0.8;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        }
+
+        /* Hero Image - Refined Merge */
+        .hero-image-container {
+            position: relative;
+            width: 220px;
+            height: 220px;
+            margin: 15px auto;
+            /* Trending: Soft Glow behind image */
+            filter: drop-shadow(0 0 15px rgba(212, 163, 163, 0.3));
+        }
+
+        /* NEW: Pulse Animation for Hero Glow */
+        .hero-image-container::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            border-radius: 50%;
+            box-shadow: 0 0 20px var(--soft-pink);
+            animation: pulseGlow 4s infinite;
+            z-index: -1;
+        }
+
+        @keyframes pulseGlow {
+            0% { transform: scale(0.95); opacity: 0.3; }
+            50% { transform: scale(1.1); opacity: 0.6; }
+            100% { transform: scale(0.95); opacity: 0.3; }
+        }
+
+        .hero-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            mask-image: radial-gradient(circle, black 45%, rgba(0,0,0,0) 75%);
+            -webkit-mask-image: radial-gradient(circle, black 45%, rgba(0,0,0,0) 75%);
+        }
+
+        h1 { font-family: 'Pinyon Script', cursive; color: var(--soft-pink); font-size: 4rem; margin: 0; }
+        .names { font-family: 'Pinyon Script', cursive; font-size: 3.5rem; color: var(--primary-green); margin: 5px 0; }
+
+        .date-badge {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            color: var(--primary-green);
+            background: var(--glass);
+            backdrop-filter: blur(5px);
+            padding: 6px 20px;
+            border-radius: 30px;
+            border: 1px solid rgba(255,255,255,0.5);
+            margin-top: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+
+        /* Glass Countdown Tiles */
+        .countdown-container { display: flex; gap: 12px; margin: 20px 0; }
+        .time-box { 
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            color: var(--primary-green); 
+            width: 65px;
+            height: 65px;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border: 1px solid rgba(255,255,255,0.8);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.05);
+        }
+        .time-box span { font-size: 1.4rem; font-weight: 600; }
+        .time-label { font-size: 0.55rem; text-transform: uppercase; color: #777; letter-spacing: 1px; }
+
+        .parents-info { line-height: 1.6; margin: 15px 0; }
+        
+        /* Floating Glass Venue Card */
+        .venue-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            padding: 25px;
+            border-radius: 24px;
+            width: 85%;
+            max-width: 320px;
+            border: 1px solid rgba(255,255,255,0.9);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+        }
+
+        .btn { 
+            background: var(--primary-green); 
+            color: white; 
+            padding: 12px 35px; 
+            text-decoration: none; 
+            border-radius: 50px; 
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 15px;
+            display: inline-block;
+            transition: 0.3s;
+        }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(74, 103, 65, 0.3); }
+
+        .reveal { opacity: 0; transform: translateY(20px); transition: all 1s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* Petal style */
+        .petal {
+            position: absolute;
+            background-color: var(--soft-pink);
+            border-radius: 150% 0 150% 0;
+            opacity: 0.4;
+            pointer-events: none;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.4; }
+            90% { opacity: 0.4; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bokeh" id="bokeh"></div>
+    <div id="petals-container"></div>
+
+    <img src="https://www.transparentpng.com/download/watercolor-flower/rose-watercolor-flower-png-transparent-17.png" class="corner-floral" style="top: 0; left: -50px; transform: rotate(150deg);" data-speed="0.05">
+    <img src="https://www.transparentpng.com/download/watercolor-flower/rose-watercolor-flower-png-transparent-17.png" class="corner-floral" style="top: 500px; right: -50px; transform: rotate(-30deg);" data-speed="0.1">
+
+    <div class="section" style="padding-top: 40px;">
+        <svg class="monogram-svg animate__animated animate__fadeInDown" viewBox="0 0 100 100">
+            <path d="M30,70 Q20,50 30,30 M70,70 Q80,50 70,30" stroke-width="1.5" fill="none"/>
+            <path d="M25,65 L20,60 M24,55 L18,52 M26,45 L21,40 M75,65 L80,60 M76,55 L82,52 M74,45 L79,40" stroke-width="1.5"/>
+            <text x="50%" y="56%" text-anchor="middle" font-family="'Cormorant Garamond'" font-size="22" fill="var(--primary-green)" font-weight="600">GK</text>
+        </svg>
+        
+        <div class="date-badge animate__animated animate__fadeInDown">09 MAY 2026</div>
+        <h1 class="animate__animated animate__fadeIn">Betrothal</h1>
+        
+        <div class="hero-image-container animate__animated animate__zoomIn">
+            <img src="Ghible.png" alt="Couple">
+        </div>
+        
+        <div class="names animate__animated animate__fadeInUp">Kavya & George</div>
+    </div>
+
+    <div class="section reveal" style="padding: 10px 20px;">
+        <div class="parents-info">
+            <p style="text-align: center; font-size: 1rem; "><strong>D/O John Jacob Santy & Jisha John</strong></p>
+            <p style="text-align: center; font-family: 'Cormorant Garamond'; font-size: 1rem; color: var(--soft-pink); margin: 0;">&</p>
+            <p style="text-align: center; font-size: 1rem; "><strong>S/O Saji V V & Bincy Saji</strong></p>
+        </div>
+
+        <div class="countdown-container" id="timer">
+            <div style=" text-align: center;" class="time-box"><span id="days">00</span><div class="time-label">Days</div></div>
+            <div style=" text-align: center;" class="time-box"><span id="hours">00</span><div class="time-label">Hrs</div></div>
+            <div style=" text-align: center;" class="time-box"><span id="minutes">00</span><div class="time-label">Mins</div></div>
+            <div style=" text-align: center;" class="time-box"><span id="seconds">00</span><div class="time-label">Secs</div></div>
+        </div>
+    </div>
+
+    <center>
+        <div class="section reveal" style="padding-top: 5px; padding-bottom: 60px;">
+            <div class="venue-card">
+                <p style="text-align: center; margin: 0; font-family: 'Montserrat'; letter-spacing: 3px; font-size: 0.65rem; color: var(--primary-green); font-weight: 500;">THE VENUE</p>
+                <h3 style="text-align: center; font-family: 'Cormorant Garamond'; font-size: 1.6rem; margin: 10px 0;">ST. Joseph Church</h3>
+                <p style=" text-align: center;margin: 0; font-size: 1.2rem; font-weight: 400; opacity: 0.8;">Nellimattom • 11:00 AM Onwards</p>
+                <a href="https://maps.app.goo.gl/1" target="_blank" class="btn">View Directions</a>
+            </div>
+        </div>
+    </center>    
+
+    <script>
+        // Create dynamic floating particles
+        function createBokeh() {
+            const container = document.getElementById('bokeh');
+            for (let i = 0; i < 15; i++) {
+                const dot = document.createElement('div');
+                const size = Math.random() * 100 + 50;
+                dot.style.cssText = `
+                    position: absolute;
+                    width: ${size}px;
+                    height: ${size}px;
+                    background: ${Math.random() > 0.5 ? 'rgba(212, 163, 163, 0.1)' : 'rgba(74, 103, 65, 0.05)'};
+                    border-radius: 50%;
+                    top: ${Math.random() * 100}%;
+                    left: ${Math.random() * 100}%;
+                    filter: blur(40px);
+                    animation: float ${Math.random() * 10 + 10}s linear infinite;
+                `;
+                container.appendChild(dot);
+            }
+        }
+
+        // Falling Petals Logic
+        function createPetals() {
+            const container = document.getElementById('petals-container');
+            for (let i = 0; i < 12; i++) {
+                const petal = document.createElement('div');
+                petal.className = 'petal';
+                const size = Math.random() * 10 + 10;
+                petal.style.width = size + 'px';
+                petal.style.height = (size * 1.5) + 'px';
+                petal.style.left = Math.random() * 100 + '%';
+                petal.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                petal.style.animationDelay = (Math.random() * 5) + 's';
+                container.appendChild(petal);
+            }
+        }
+
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes float {
+                0% { transform: translateY(0) translateX(0); }
+                50% { transform: translateY(-50px) translateX(20px); }
+                100% { transform: translateY(0) translateX(0); }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        createBokeh();
+        createPetals();
+
+        // Parallax and Scroll Reveal
+        window.addEventListener('scroll', () => {
+            const reveals = document.querySelectorAll('.reveal');
+            const floras = document.querySelectorAll('.corner-floral');
+            const scrollY = window.scrollY;
+
+            floras.forEach(f => {
+                const speed = f.getAttribute('data-speed');
+                f.style.transform = `translateY(${scrollY * speed}px) ${f.style.transform.includes('rotate') ? f.style.transform.substring(f.style.transform.indexOf('rotate')) : ''}`;
+            });
+
+            reveals.forEach(el => {
+                let windowHeight = window.innerHeight;
+                let revealTop = el.getBoundingClientRect().top;
+                if (revealTop < windowHeight - 100) el.classList.add('active');
+            });
+        });
+
+        // Countdown
+        const weddingDate = new Date("May 9, 2026 11:00:00").getTime();
+        setInterval(() => {
+            const now = new Date().getTime();
+            const diff = weddingDate - now;
+            if (diff > 0) {
+                document.getElementById("days").innerText = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
+                document.getElementById("hours").innerText = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+                document.getElementById("minutes").innerText = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+                document.getElementById("seconds").innerText = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
